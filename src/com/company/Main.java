@@ -64,7 +64,7 @@ public class Main {
         while (game == true) {
 
             if (userchoice == 1) {
-                
+
             } // end 1st if
 
         }
