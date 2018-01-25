@@ -67,6 +67,10 @@ public class Main {
 
             } // end 1st if
 
+            if (userchoice == 4) {
+
+                game = false;
+            } // end 4th if
         }
 
     } // end Combat
