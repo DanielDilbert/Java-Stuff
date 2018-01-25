@@ -36,7 +36,9 @@ public class Main {
 
 
         System.out.println("Hero: " + Hero1);
-        System.out.println("New Hero Health: " + (Hero1HP - Monster1ATT));
+        System.out.println(Hero1 + " " + "Health: " + (Hero1HP - Monster1ATT));
+        System.out.println(Hero2 + " " + "Health: " + (Hero2HP - Monster2ATT));
+
     } // end Characters
 
     public static void Stats () {
@@ -56,7 +58,16 @@ public class Main {
 
     public static void Combat() {
 
+        Boolean game = true;
+        int userchoice = 0;
 
+        while (game == true) {
+
+            if (userchoice == 1) {
+                
+            } // end 1st if
+
+        }
 
     } // end Combat
 
