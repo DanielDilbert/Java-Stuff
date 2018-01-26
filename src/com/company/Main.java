@@ -3,6 +3,7 @@ This is a program that takes the user on a test-based adventure.
 */
 
 package com.company;
+import java.util.Scanner;
 
 public class BasicRPG {
 
@@ -61,6 +62,8 @@ public class BasicRPG {
     } // end Stats
 
     public static void Combat() {
+
+    Scanner input = new Scanner(System.in);
 
         Boolean game = true;
         int userchoice = 0;
