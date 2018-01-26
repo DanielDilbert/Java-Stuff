@@ -70,7 +70,7 @@ public class Main {
             if (userchoice == 4) {
 
                 game = false;
-            } // end 4th if
+            } // end 4th if a way to end the game
         }
 
     } // end Combat
