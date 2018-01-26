@@ -1,6 +1,11 @@
-package com.company;
+/*
+This is a program that takes the user on a test-based adventure. 
+*/
 
-public class Main {
+package com.company;
+import java.util.Scanner;
+
+public class BasicRPG {
 
     public static void main(String[] args) {
 	// write your code here
@@ -58,6 +63,8 @@ public class Main {
 
     public static void Combat() {
 
+    Scanner input = new Scanner(System.in);
+
         Boolean game = true;
         int userchoice = 0;
 
@@ -67,6 +74,10 @@ public class Main {
 
             } // end 1st if
 
+            if (userchoice == 4) {
+
+                game = false;
+            } // end 4th if a way to end the game
         }
 
     } // end Combat
