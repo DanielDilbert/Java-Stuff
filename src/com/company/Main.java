@@ -1,3 +1,7 @@
+/*
+This is a program that takes the user on a test-based adventure. 
+*/
+
 package com.company;
 
 public class BasicRPG {
