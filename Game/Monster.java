@@ -1,4 +1,4 @@
-public class Monster extends gameCharacter {
+public class Monster extends gameMonster {
 
   protected int xP;
 

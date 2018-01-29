@@ -8,12 +8,10 @@ public class adventureGameRunner {
   Dungeon myDungeon = new Dungeon(); // create new Dungeon
 
   Scanner input = new Scanner(System.in);
-  SecureRandom randomChance = new SecureRandom();
+  //SecureRandom randomChance = new SecureRandom();
 
   Room currentRoom = myDungeon.getRoom0();
   Room nextRoom = currentRoom;
-
-
 
   String Option;
   Boolean gameLoop = true;
@@ -98,6 +96,8 @@ public class adventureGameRunner {
 
     SecureRandom randomNumbers = new SecureRandom();
     Scanner input = new Scanner(System.in);
+
+
   /*Loop Control*/
   // Declare loop variable and initialize it to be true
     Boolean combatGame = true;
@@ -106,116 +106,155 @@ public class adventureGameRunner {
 
   /*Report Combat Stats*/
   // Print the Monster's name
-    System.out.println("\nYou are fighting a " + monsterName + "!");
+    System.out.println("\nYou are fighting a " + Monster.name + "!");
   // Print the Monster's health
-    System.out.print("The monster HP: ");
-    System.out.println(monsterHealth);
+    System.out.print("The monster HP: " + Monster.health + "\n");
+
   // Print the Player's health
-    System.out.print("Your HP: ");
-    System.out.println(heroHealth);
+    System.out.print("Your HP: " + Player.health + "\n");
+
   // Print the Player's magic points
-    System.out.print("Your MP: ");
-    System.out.println(heroMagic);
+    System.out.print("Your MP: " + Player.mana + "\n");
+
 
 
   /*Combat menu prompt*/
     int Option;
+    String Choice;
+
     System.out.println("\nCombat Options:");
   // Print option 1: Sword Attack
     System.out.println("  1.) Sword Attack");
-  // Print option 2: Cast Spell
-    System.out.println("  2.) Cast Spell");
-  // Print option 3: Cahrge Mana
-    System.out.println("  3.) Charge Mana");
-  // Print option 4: Run Away
-    System.out.println("  4.) Run Away");
+  // Print option 2: Cast Weaken
+    System.out.println("  2.) Cast Weaken");
+    // Print option 3: Heal
+      System.out.println("  3.) Cast Heal");
+  // Print option 4: Charge Mana
+    System.out.println("  4.) Charge Mana");
+  // Print option 5: Run Away
+    System.out.println("  5.) Run Away");
   // Prompt player for action
     System.out.print("What action do you want to perform? ");
 
   // Declare variable for user input (as number) and acquire value from Scanner object
     Option = input.nextInt();
 
+
   // If player chose option 1, (check with equality operator)
     if(Option == 1) {
 
-    // Print attack text:
-    // "You strike the <monster name> with your sword for <hero attack> damage"
-      System.out.println("\nYou strike the " + monsterName + " with you sword for " + heroAttack + " damage.");
-      monsterHealth = monsterHealth - (heroAttack + randomNumbers.nextInt(3));
-      heroHealth = heroHealth - monsterAttack;
-    // The monster attacks the player
-      System.out.print("The " + monsterName + " hits you for ");
-      System.out.println(monsterAttack);
-  // Calculating how much damage was done and subtracting it from the monster's health
+      System.out.println("\nYou strike the " + Monster.name + " with you sword for " + Player.attackPower + " damage.");
+      Monster.health = Monster.health - (Player.attackPower + randomNumbers.nextInt(3));
+
+    if (Monster.health > 0) {
+      // The monster attacks the player
+      Player.health = Player.health - Monster.attackPower;
+      System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+    }
 
 } // End of if statement.
 
-  // Else if player chose option 2, (check with equality operator)
     else if(Option == 2) {
-    if(heroMagic < 3){
+    if(Player.mana < 3){
         System.out.println("Sorry, you don't have enough mana for that.");
     } // End of if statement.
-    if(heroMagic >= 3){
-        heroHealth = heroHealth - monsterAttack;
-    // Print spell message:
-    // "You cast the weaken spell on the monster."
+
+    if(Player.mana >= 3){
+        Player.health = Player.health - Monster.attackPower;
+
     System.out.println("\nYou cast the weaken spell on the monster.");
-    // The monster's health is divided by 2 each time you cast the spell
-    monsterHealth = monsterHealth / 2;
-    // The hero uses up his magic by 3 points
-    heroMagic = heroMagic - 3;
-    // The monster attacks the player
-    System.out.print("The " + monsterName + " hits you for ");
-    System.out.println(monsterAttack);
-    // Calculating how much magic damage was done and dividing it from monster's health
+
+    Monster.health = Monster.health / 2;
+
+    Player.mana = Player.mana - 3;
+
+    System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
   } // End of if statement.
 } // End of else if option 2 statement.
-  //Else if the player chose option 3, (check with equality operator)
-  else if(Option == 3) {
-    // The monster attacks you
-    heroHealth = heroHealth - monsterAttack;
-    // Print charging messgae:
-    // "You focus and charge your magic power."
-    System.out.println("\nYou focus and charge your magic power.");
-    // You gain 1 point of magic each time you charge
-    heroMagic = heroMagic + 1;
-      // The monster attacks the player
-      System.out.print("The " + monsterName + " hits you for ");
-      System.out.println(monsterAttack);
-    // The hero charges his magic and gains 1 magic each time
-  } // End of else if statement.
 
-  // Else if player chose option 4, (check with equality operator)
+    else if(Option == 3) {
+      if(Player.mana < 2){
+        System.out.println("Sorry, you don't have enough mana for that.");
+      } // End of if statement.
+
+      if(Player.mana >= 2){
+        Player.health = Player.health - Monster.attackPower;
+
+        System.out.println("\nYou heal yourself for 36 HP.");
+
+        Player.health = Player.health + 36;
+
+        Player.mana = Player.mana - 2;
+
+        System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
+      } // End of if statement.
+    } // End of else if option 3 statement.
+
   else if(Option == 4) {
-    // Print retreat message:
-    // "You ran away!"
-    System.out.println("\nYou ran away!");
-    combatGame = false;
-    break;
+
+    Player.health = Player.health - Monster.attackPower;
+
+    System.out.println("\nYou focus and charge your magic power.");
+
+    Player.mana = Player.mana + 1;
+
+    System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
   } // End of else if statement.
 
-  // Else the player chose incorrectly
+  else if(Option == 4) {
+
+    System.out.println("\nYou ran away!");
+    //combatGame = false;
+    break; // Continues to outerloop
+  } // End of else if statement.
+
   else if(Option != 1) {
-      // Print an error message:
-      // "I don't understand that command."
+
     System.out.println("\nI don't understand that command.");
   } // End of else if statement.
 
-  if (monsterHealth <= 0) {
-    combatGame = false;
-    System.out.println("\nYou defeated the " + monsterName + "!");
+  if (Monster.health <= 0) {
+    //combatGame = false;
+    System.out.println("\nYou defeated the " + Monster.name + "!");
     break;
   }
 
-  if (heroHealth <= 0) {
+  if (Player.health <= 0) {
     combatGame = false;
     System.out.println("You have been slain.");
 
   } // End of if statement.
 
   if (!combatGame){
+
       System.out.println("\nGame over.");
-      break;
+
+      System.out.println("Would you like to play again?");
+
+    Scanner choice = new Scanner(System.in);
+    Choice = choice.nextLine();
+
+      if(Choice.equalsIgnoreCase("y"))  {
+
+        // Restart entire game
+      }
+
+      else if(Choice.equalsIgnoreCase("n")) {
+        //combatGame = false;
+
+        break;
+
+      }
+
+      else if (Choice != "y") {
+
+        System.out.println("\nThat is not a valid choice. Try again.");
+      }
+
+
   } // End of while statement.
 } // End of while(combatGame) statement.
 } // End of combatOption method.
@@ -225,7 +264,8 @@ private static void randomEncounter() {
   SecureRandom randomChance = new SecureRandom();
 
   // A Player is created
-  Player Hero = new Player("Hero", 100, 30, 0);
+  // Try to implement more Player's and implement the ability to choose a specific Player at the start
+  Player Hero = new Player("Daniel", 100, 30, 0);
 
   // The counter will start at one and increase by one each time
   for(int counter = 1; counter <= 1; counter ++) {
@@ -295,6 +335,33 @@ private static void randomEncounter() {
     combatOptions(Hero.health, Hero.attackPower, Hero.mana, Wyvern.health, Wyvern.attackPower, Wyvern.xP, Wyvern.name);
 
   } // end encounter 7
+
+    // If the encounter == 8, you will encounter a Ghoul
+    if(encounter == 8) {
+
+      Monster Ghoul = new Monster("Ghoul", 36, 13, 5);
+
+      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Ghoul.health, Ghoul.attackPower, Ghoul.xP, Ghoul.name);
+
+    } // end encounter 8
+
+    // If the encounter == 9, you will encounter a Leviathian
+    if(encounter == 9) {
+
+      Monster Leviathan = new Monster("Leviathan", 126, 27, 15);
+
+      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Leviathan.health, Leviathan.attackPower, Leviathan.xP, Leviathan.name);
+
+    } // end encounter 9
+
+    // If the encounter == 10, you will encounter a Golgothan
+    if(encounter == 10) {
+
+      Monster Golgothan = new Monster("Golgothan", 59, 11, 6);
+
+      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Golgothan.health, Golgothan.attackPower, Golgothan.xP, Golgothan.name);
+
+    } // end encounter 10
 
   } // end for statement
 

@@ -2,10 +2,10 @@ public class Player extends gameCharacter {
 
   protected static int mana;
 
-  public Player(String name, int health, int attackPower, int mana) {
+  public Player(String name, int heroHealth, int attackPower, int mana) {
 
     this.name = name;
-    this.health = health;
+    this.health = heroHealth;
     this.attackPower = attackPower;
     this.mana = mana;
 

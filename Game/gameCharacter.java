@@ -3,18 +3,19 @@ public class gameCharacter {
   protected static String name;
   protected static int health;
   protected static int attackPower;
+  protected static int monsterHealth;
 
   public gameCharacter() {
 
-    super();
 
-  } // end of super constructor
+  }
 
   public gameCharacter(String name, int health, int attackPower) {
 
     this.name = name;
     this.health = health;
     this.attackPower = attackPower;
+    this.monsterHealth = health;
 
   } // end of constructor
 

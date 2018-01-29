@@ -8,7 +8,7 @@ public class Room {
   private Room west;
   private Room south;
 
-  // instance variables for desciptions, exits, and toString
+  // instance variables for descriptions, exits, and toString
   private String itsDescription;
   private String itsExit;
   private String toString;
