@@ -8,7 +8,7 @@ public class adventureGameRunner {
   Dungeon myDungeon = new Dungeon(); // create new Dungeon
 
   Scanner input = new Scanner(System.in);
-  //SecureRandom randomChance = new SecureRandom();
+  SecureRandom randomChance = new SecureRandom();
 
   Room currentRoom = myDungeon.getRoom0();
   Room nextRoom = currentRoom;
@@ -29,7 +29,11 @@ public class adventureGameRunner {
     if(Option.equalsIgnoreCase("n")) {
 
       nextRoom = nextRoom.getNorth(); // go North
-      randomEncounter();
+
+      randomChance.nextInt(20);
+      if (randomChance.nextInt() >= 2) {
+        randomEncounter();
+      }
 
       if(nextRoom == null) {
         System.out.println("\nError. You cannot go north. You are back in the Bathroom."); // if you cannot go north print error
@@ -40,7 +44,11 @@ public class adventureGameRunner {
     else if(Option.equalsIgnoreCase("e")) {
 
       nextRoom = nextRoom.getEast(); // go East
-      randomEncounter();
+
+      randomChance.nextInt(20);
+      if (randomChance.nextInt() >= 2) {
+        randomEncounter();
+      }
 
       if(nextRoom == null) {
         System.out.println("\nError. You cannot go east. You are back in the Bathroom.");
@@ -51,7 +59,11 @@ public class adventureGameRunner {
     else if(Option.equalsIgnoreCase("w")) {
 
       nextRoom = nextRoom.getWest(); // go West
-      randomEncounter();
+
+      randomChance.nextInt(20);
+      if (randomChance.nextInt() >= 2) {
+        randomEncounter();
+      }
 
       if(nextRoom == null) {
         System.out.println("\nError. You cannot go west. You are back in the Bathroom.");
@@ -62,7 +74,11 @@ public class adventureGameRunner {
     else if(Option.equalsIgnoreCase("s")) {
 
       nextRoom = nextRoom.getSouth(); // go
-      randomEncounter();
+
+      randomChance.nextInt(20);
+      if (randomChance.nextInt() >= 2) {
+        randomEncounter();
+      }
 
       if(nextRoom == null) {
         System.out.println("\nError. You cannot go south. You are back in the Bathroom.");
@@ -72,7 +88,7 @@ public class adventureGameRunner {
 
     else if(Option.equalsIgnoreCase("q")) {
         System.out.println("\nYou have quit the game.");
-          break;
+          gameLoop = false;
     } // end of option q
 
     else if (Option != "n") {
