@@ -1,13 +1,13 @@
 public class Monster extends gameMonster {
 
-  protected int xP;
+  protected static int XP;
 
-  public Monster(String name, int health, int attackPower, int xP) {
+  public Monster(String name, int health, int attackPower, int XP) {
 
     this.name = name;
     this.health = health;
     this.attackPower = attackPower;
-    this.xP = xP;
+    this.XP = XP;
 
   } // end of constructor
 
@@ -24,7 +24,7 @@ public class Monster extends gameMonster {
 
   public int getXP() {
 
-    return xP;
+    return XP;
 
   } // getXP
 

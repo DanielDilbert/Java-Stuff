@@ -5,7 +5,16 @@ public class adventureGameRunner {
 
   public static void main(String[] args) {
 
-  Dungeon myDungeon = new Dungeon(); // create new Dungeon
+      Dungeon myDungeon = new Dungeon(); // create new Dungeon
+
+      /*
+      Create more Player's for a four Player team. Example: Knight, Archer, Mage, Rogue
+       */
+
+      Player Knight = new Player("Daniel", 125, 30, 3, 0); // Player's stats are kept at the end of each battle.
+
+      //Player Archer = new Player("Josh", 80, 16, 0, 0);
+
 
   Scanner input = new Scanner(System.in);
   SecureRandom randomChance = new SecureRandom();
@@ -108,11 +117,14 @@ public class adventureGameRunner {
 
 } // end of getInput Method
 
-  private static void combatOptions(int heroHealth, int heroAttack, int heroMagic, int monsterHealth, int monsterAttack, int monsterXP, String monsterName) {
+  private static void combatOptions(/*int heroHealth, int heroAttack, int heroMagic, */int monsterHealth, int monsterAttack, int monsterXP, String monsterName) {
 
     SecureRandom randomNumbers = new SecureRandom();
     Scanner input = new Scanner(System.in);
 
+      // Knight = new Player("Daniel", 125, 30, 3, 0); // Player's stats are kept at the end of each battle.
+
+      //Player Archer = new Player("Josh", 80, 16, 0, 0);
 
   /*Loop Control*/
   // Declare loop variable and initialize it to be true
@@ -128,9 +140,13 @@ public class adventureGameRunner {
 
   // Print the Player's health
     System.out.print("Your HP: " + Player.health + "\n");
+        //System.out.print("Archer's HP: " + Archer.health + "\n");
 
   // Print the Player's magic points
     System.out.print("Your MP: " + Player.mana + "\n");
+
+    // Print the Player's experience points
+      System.out.println("Your XP: " + Player.XP);
 
 
 
@@ -144,7 +160,7 @@ public class adventureGameRunner {
   // Print option 2: Cast Weaken
     System.out.println("  2.) Cast Weaken");
     // Print option 3: Heal
-      System.out.println("  3.) Cast Heal");
+        System.out.println("  3.) Cast Heal");
   // Print option 4: Charge Mana
     System.out.println("  4.) Charge Mana");
   // Print option 5: Run Away
@@ -220,7 +236,7 @@ public class adventureGameRunner {
 
   } // End of else if statement.
 
-  else if(Option == 4) {
+  else if(Option == 5) {
 
     System.out.println("\nYou ran away!");
     //combatGame = false;
@@ -235,6 +251,8 @@ public class adventureGameRunner {
   if (Monster.health <= 0) {
     //combatGame = false;
     System.out.println("\nYou defeated the " + Monster.name + "!");
+    System.out.println("You have gained " + Monster.XP + "XP");
+    Player.XP = Player.XP + Monster.XP;
     break;
   }
 
@@ -261,7 +279,7 @@ public class adventureGameRunner {
       else if(Choice.equalsIgnoreCase("n")) {
         //combatGame = false;
 
-        break;
+        break;  // end the entire program!!?!!?!!
 
       }
 
@@ -281,7 +299,7 @@ private static void randomEncounter() {
 
   // A Player is created
   // Try to implement more Player's and implement the ability to choose a specific Player at the start
-  Player Hero = new Player("Daniel", 100, 30, 0);
+
 
   // The counter will start at one and increase by one each time
   for(int counter = 1; counter <= 1; counter ++) {
@@ -294,7 +312,7 @@ private static void randomEncounter() {
 
       Monster Goblin = new Monster("Goblin", 80, 13, 3);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Goblin.health, Goblin.attackPower, Goblin.xP, Goblin.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana, */ Goblin.health, Goblin.attackPower, Goblin.XP, Goblin.name);
 
     } // end encounter 1
 
@@ -303,7 +321,7 @@ private static void randomEncounter() {
 
       Monster Zombie = new Monster("Zombie", 86, 12, 4);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Zombie.health, Zombie.attackPower, Zombie.xP, Zombie.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Zombie.health, Zombie.attackPower, Zombie.XP, Zombie.name);
 
     } // end encounter 2
 
@@ -312,7 +330,7 @@ private static void randomEncounter() {
 
       Monster Dragon = new Monster("Dragon", 90, 16, 12);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Dragon.health, Dragon.attackPower, Dragon.xP, Dragon.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Dragon.health, Dragon.attackPower, Dragon.XP, Dragon.name);
 
     } // end encounter 3
 
@@ -321,7 +339,7 @@ private static void randomEncounter() {
 
       Monster Frankenstein = new Monster("Frankenstein", 85, 14, 6);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Frankenstein.health, Frankenstein.attackPower, Frankenstein.xP, Frankenstein.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Frankenstein.health, Frankenstein.attackPower, Frankenstein.XP, Frankenstein.name);
 
     } // end encounter 4
 
@@ -330,7 +348,7 @@ private static void randomEncounter() {
 
       Monster Vampire = new Monster("Vampire", 40, 12, 4);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Vampire.health, Vampire.attackPower, Vampire.xP, Vampire.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana, */Vampire.health, Vampire.attackPower, Vampire.XP, Vampire.name);
 
     } // end encounter 5
 
@@ -339,7 +357,7 @@ private static void randomEncounter() {
 
     Monster FeralDog = new Monster("Feral Dog", 25, 10, 2);
 
-    combatOptions(Hero.health, Hero.attackPower, Hero.mana, FeralDog.health, FeralDog.attackPower, FeralDog.xP, FeralDog.name);
+    combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ FeralDog.health, FeralDog.attackPower, FeralDog.XP, FeralDog.name);
 
   } // end encounter 6
 
@@ -348,7 +366,7 @@ private static void randomEncounter() {
 
     Monster Wyvern = new Monster("Wyvern", 98, 18, 9);
 
-    combatOptions(Hero.health, Hero.attackPower, Hero.mana, Wyvern.health, Wyvern.attackPower, Wyvern.xP, Wyvern.name);
+    combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Wyvern.health, Wyvern.attackPower, Wyvern.XP, Wyvern.name);
 
   } // end encounter 7
 
@@ -357,7 +375,7 @@ private static void randomEncounter() {
 
       Monster Ghoul = new Monster("Ghoul", 36, 13, 5);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Ghoul.health, Ghoul.attackPower, Ghoul.xP, Ghoul.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Ghoul.health, Ghoul.attackPower, Ghoul.XP, Ghoul.name);
 
     } // end encounter 8
 
@@ -366,7 +384,7 @@ private static void randomEncounter() {
 
       Monster Leviathan = new Monster("Leviathan", 126, 27, 15);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Leviathan.health, Leviathan.attackPower, Leviathan.xP, Leviathan.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Leviathan.health, Leviathan.attackPower, Leviathan.XP, Leviathan.name);
 
     } // end encounter 9
 
@@ -375,7 +393,7 @@ private static void randomEncounter() {
 
       Monster Golgothan = new Monster("Golgothan", 59, 11, 6);
 
-      combatOptions(Hero.health, Hero.attackPower, Hero.mana, Golgothan.health, Golgothan.attackPower, Golgothan.xP, Golgothan.name);
+      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Golgothan.health, Golgothan.attackPower, Golgothan.XP, Golgothan.name);
 
     } // end encounter 10
 

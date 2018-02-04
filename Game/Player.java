@@ -1,13 +1,15 @@
 public class Player extends gameCharacter {
 
   protected static int mana;
+  protected static int XP;
 
-  public Player(String name, int heroHealth, int attackPower, int mana) {
+  public Player(String name, int health, int attackPower, int mana, int XP) {
 
     this.name = name;
-    this.health = heroHealth;
+    this.health = health;
     this.attackPower = attackPower;
     this.mana = mana;
+    this.XP = XP;
 
   } // end of constructor
 
