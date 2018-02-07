@@ -1,7 +1,7 @@
 import java.security.SecureRandom;
 import java.util.Scanner;
 
-public class adventureGameRunner {
+public class adventureGame {
 
   public static void main(String[] args) {
 
@@ -13,7 +13,7 @@ public class adventureGameRunner {
 
       Player Knight = new Player("Daniel", 125, 30, 3, 0); // Player's stats are kept at the end of each battle.
 
-      //Player Archer = new Player("Josh", 80, 16, 0, 0);
+      Char1 Archer = new Char1("Josh", 80, 16, 0, 0);
 
 
   Scanner input = new Scanner(System.in);
@@ -124,6 +124,7 @@ private static void randomEncounter() {
   // Try to implement more Player's and implement the ability to choose a specific Player at the start
 
 
+
   // The counter will start at one and increase by one each time
   for(int counter = 1; counter <= 1; counter ++) {
 
@@ -224,38 +225,38 @@ private static void randomEncounter() {
 
 } // end of randomEncounter
 
+
+
   private static void combatOptions(/*int heroHealth, int heroAttack, int heroMagic, */int monsterHealth, int monsterAttack, int monsterXP, String monsterName) {
 
     SecureRandom randomNumbers = new SecureRandom();
     Scanner input = new Scanner(System.in);
 
-    // Knight = new Player("Daniel", 125, 30, 3, 0); // Player's stats are kept at the end of each battle.
-
-    //Player Archer = new Player("Josh", 80, 16, 0, 0);
-
     /*Loop Control*/
     // Declare loop variable and initialize it to be true
     Boolean combatGame = true;
+    Boolean FirstTurn = true;
     // While the loop control variable is true
     while (combatGame){
 
       /*Report Combat Stats*/
       // Print the Monster's name
       System.out.println("\nYou are fighting a " + Monster.name + "!");
+
       // Print the Monster's health
       System.out.print("The monster HP: " + Monster.health + "\n");
 
       // Print the Player's health
-      System.out.print("Your HP: " + Player.health + "\n");
-      //System.out.print("Archer's HP: " + Archer.health + "\n");
+      System.out.print("Your HP: " + Player.health + "      ");
+      System.out.print("Archer's HP: " + Char1.health + "\n");
 
       // Print the Player's magic points
-      System.out.print("Your MP: " + Player.mana + "\n");
+      System.out.print("Your MP: " + Player.mana + "        ");
+      System.out.print("Archer's stamina: " + Char1.stamina + "\n");
 
       // Print the Player's experience points
-      System.out.println("Your XP: " + Player.XP);
-
-
+      System.out.print("Your XP: " + Player.XP + "        ");
+      System.out.print("Archer's XP: " + Char1.XP + "\n");
 
       /*Combat menu prompt*/
       int Option;
@@ -281,7 +282,7 @@ private static void randomEncounter() {
       // If player chose option 1, (check with equality operator)
       if(Option == 1) {
 
-          System.out.println("\nYou strike the " + Monster.name + " with you sword." /* for " + Player.attackPower  + " damage."*/);
+          System.out.println("\nYou strike the " + Monster.name + " with your sword." /* for " + Player.attackPower  + " damage."*/);
         Monster.health = Monster.health - (Player.attackPower + randomNumbers.nextInt(3));
 
 
@@ -289,8 +290,8 @@ private static void randomEncounter() {
           // The monster attacks the player
           Player.health = Player.health - Monster.attackPower;
           System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+          FirstTurn = false;
         }
-
       } // End of if statement.
 
       else if(Option == 2) {
@@ -302,13 +303,11 @@ private static void randomEncounter() {
           Player.health = Player.health - Monster.attackPower;
 
           System.out.println("\nYou cast the weaken spell on the monster.");
-
           Monster.health = Monster.health / 2;
-
           Player.mana = Player.mana - 3;
 
           System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
-
+          FirstTurn = false;
         } // End of if statement.
       } // End of else if option 2 statement.
 
@@ -318,16 +317,37 @@ private static void randomEncounter() {
         } // End of if statement.
 
         if(Player.mana >= 2){
-          Player.health = Player.health - Monster.attackPower;
 
-          System.out.println("\nYou heal yourself for 36 HP.");
+          System.out.println("Who would you like to heal?");
+          System.out.println("Type Self to heal yourself");
+          System.out.println("Type Archer to heal the Archer");
 
-          Player.health = Player.health + 36;
+          // Make an option to heal yourself or a teammate
+          //String Choice;
+          Scanner choice = new Scanner(System.in);
+          Choice = choice.nextLine();
 
-          Player.mana = Player.mana - 2;
+          if(Choice.equalsIgnoreCase("Self")) {
+            Player.health = Player.health - Monster.attackPower;
 
-          System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+            System.out.println("\nYou heal yourself for 36 HP.");
+            Player.health = Player.health + 36;
+            Player.mana = Player.mana - 2;
 
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+            FirstTurn = false;
+          } // end self heal
+
+          if(Choice.equalsIgnoreCase("Archer")) {
+            Player.health = Player.health - Monster.attackPower;
+
+            System.out.println("\nYou heal the Archer for 36 HP.");
+            Char1.health = Char1.health + 36;
+            Player.mana = Player.mana - 2;
+
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+            FirstTurn = false;
+          } // end self heal
         } // End of if statement.
       } // End of else if option 3 statement.
 
@@ -336,10 +356,10 @@ private static void randomEncounter() {
         Player.health = Player.health - Monster.attackPower;
 
         System.out.println("\nYou focus and charge your magic power.");
-
         Player.mana = Player.mana + 1;
 
         System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+        FirstTurn = false;
 
       } // End of else if statement.
 
@@ -347,7 +367,7 @@ private static void randomEncounter() {
 
         System.out.println("\nYou ran away!");
 
-        break; // Continues to outerloop
+        break; // Continues to outer loop
       } // End of else if statement.
 
       else if(Option != 1) {
@@ -355,21 +375,9 @@ private static void randomEncounter() {
         System.out.println("\nI don't understand that command.");
       } // End of else if statement.
 
-      if (Monster.health <= 0) {
-
-        System.out.println("\nYou defeated the " + Monster.name + "!");
-        System.out.println("You have gained " + Monster.XP + "XP");
-        Player.XP = Player.XP + Monster.XP;
-
-        // Level up!
-          if (Player.XP >= 9) {
-              System.out.println("You leveled up!");
-              Player.health = Player.health + 15;
-              Player.attackPower = Player.attackPower + 3;
-              Player.XP = Player.XP - Player.XP;
-
-          }
-        break;
+      if (Char1.health <= 0) {
+        combatGame = false;
+        System.out.println("Archer has been slain!");
       }
 
       if (Player.health <= 0) {
@@ -388,26 +396,189 @@ private static void randomEncounter() {
         Choice = choice.nextLine();
 
         if(Choice.equalsIgnoreCase("y"))  {
-
+          break; // Continues the game atm
           // Restart entire game
         }
 
         else if(Choice.equalsIgnoreCase("n")) {
-          //combatGame = false;
-
           break;  // end the entire program!!?!!?!!
-
         }
 
         else if (Choice != "y") {
 
           System.out.println("\nThat is not a valid choice. Try again.");
         }
+      } // End of if statement.
 
 
-      } // End of while statement.
+      if (Monster.health <= 0) {
+
+        System.out.println("\nYou defeated the " + Monster.name + "!");
+        System.out.println("You have gained " + Monster.XP + "XP");
+        Player.XP = Player.XP + Monster.XP;
+
+        // Level up!
+          if (Player.XP >= 9) {
+              System.out.println("You leveled up!");
+              Player.health = Player.health + 15;
+              Player.attackPower = Player.attackPower + 3;
+              Player.XP = Player.XP - Player.XP;
+
+          }
+        break;
+      }
+
+      /* **********************************************BEGIN SECOND TURN***************************************************************** */
+      // After the Player's turn, the archer will take its turn
+
+      if (!FirstTurn) {
+
+        /*Report Combat Stats*/
+        // Print the Monster's name
+        System.out.println("\nYou are fighting a " + Monster.name + "!");
+
+        // Print the Monster's health
+        System.out.print("The monster HP: " + Monster.health + "\n");
+
+        // Print the Player's health
+        System.out.print("Your HP: " + Player.health + "      ");
+        System.out.print("Archer's HP: " + Char1.health + "\n");
+
+        // Print the Player's magic points
+        System.out.print("Your MP: " + Player.mana + "        ");
+        System.out.print("Archer's stamina: " + Char1.stamina + "\n");
+
+        // Print the Player's experience points
+        System.out.print("Your XP: " + Player.XP + "        ");
+        System.out.print("Archer's XP: " + Char1.XP + "\n");
+
+
+        System.out.println("\nCombat Options for Archer:");
+        // Print option 1: Bow Attack
+        System.out.println("  1.) Bow Attack");
+        // Print option 2: Cast Pin Point
+        System.out.println("  2.) Cast Pin Point");
+        // Print option 3: Charge Stamina
+        System.out.println("  3.) Charge Stamina");
+        // Prompt player for action
+        System.out.print("What action do you want to perform? ");
+
+        Option = input.nextInt();
+
+        // If player chose option 1, (check with equality operator)
+        if(Option == 1) {
+
+          System.out.println("\nYou strike the " + Monster.name + " with your bow.");
+          Monster.health = Monster.health - (Char1.attackPower + randomNumbers.nextInt(3));
+
+          if (Monster.health > 0) {
+            // The monster attacks the player
+            Char1.health = Char1.health - Monster.attackPower;
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
+          }
+
+        } // End of if statement.
+
+        else if(Option == 2) {
+          if(Char1.stamina < 3){
+            System.out.println("Sorry, you don't have enough stamina for that.");
+          } // End of if statement.
+
+          if(Char1.stamina >= 3){
+            Char1.health = Char1.health - Monster.attackPower;
+
+            System.out.println("\nYou use Pin Point on the monster.");
+            Monster.health = Monster.health / 2;
+            Char1.stamina = Char1.stamina - 3;
+
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
+          } // End of if statement.
+        } // End of else if option 2 statement.
+
+        else if(Option == 3) {
+
+          Char1.health = Char1.health - Monster.attackPower;
+
+          System.out.println("\nYou focus and charge your stamina.");
+          Char1.stamina = Char1.stamina + 1;
+
+          System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+
+        } // End of else if statement.
+        } // End of if statement.
+
+        else if(Option != 1) {
+
+          System.out.println("\nI don't understand that command.");
+        } // End of else if statement.
+
+      if (Monster.health <= 0) {
+
+        System.out.println("\nThe team defeated the " + Monster.name + "!");
+        System.out.println("The team has gained " + Monster.XP + "XP");
+        Player.XP = Player.XP + Monster.XP;
+        Char1.XP = Char1.XP + Monster.XP;
+
+        // Level up!
+        if (Player.XP >= 9 || Char1.XP >= 9) {
+          System.out.println("You leveled up!");
+          Player.health = Player.health + 15;
+          Char1.health = Char1.health + 12;
+
+          Player.attackPower = Player.attackPower + 3;
+          Char1.attackPower = Char1.attackPower + 2;
+
+          Player.XP = Player.XP - Player.XP;
+          Char1.XP = Char1.XP - Char1.XP;
+        } // end Level up
+
+        // ************************* Possibly no need for this to be here ********************
+
+        /*
+        if (Char1.health <= 0) {
+          combatGame = false;
+          System.out.println("Archer has been slain!");
+        }
+
+        if (Player.health <= 0) {
+          combatGame = false;
+          System.out.println("You have been slain.");
+
+        } // End of if statement.
+
+        if (!combatGame){
+
+          System.out.println("\nGame over.");
+
+          System.out.println("Would you like to play again?");
+
+          Scanner choice = new Scanner(System.in);
+          Choice = choice.nextLine();
+
+          if(Choice.equalsIgnoreCase("y"))  {
+            break; // Continues the game atm
+            // Restart entire game
+          }
+
+          else if(Choice.equalsIgnoreCase("n")) {
+            break;  // end the entire program!!?!!?!!
+          }
+
+          else if (Choice != "y") {
+
+            System.out.println("\nThat is not a valid choice. Try again.");
+          }
+        } // End of if statement.
+
+        */
+
+        break; // breaks out of the combat loop and continues the adventure
+      } // end Monster death
+      } // end 2nd turn
+      /* **********************************************END SECOND TURN***************************************************************** */
+
     } // End of while(combatGame) statement.
   } // End of combatOption method.
-
-
-} // end of class
+ // end of class
