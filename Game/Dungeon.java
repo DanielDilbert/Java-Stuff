@@ -27,8 +27,19 @@ public class Dungeon {
     this.westHall.setExits(livingRoom, eastHall, bathroom, mainBedroom);
     this.livingRoom.setExits(null, kitchen, null, westHall);
     this.kitchen.setExits(null, null, livingRoom, eastHall);
+
+    /*
     this.eastHall.setExits(kitchen, guestBedroom, westHall, null);
     this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    this.guestBedroom.setExits(null, null, eastHall, null);
+    */
+
 
     // starting room
     this.startRoom = this.bathroom;
