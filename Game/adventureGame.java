@@ -6,14 +6,14 @@ public class adventureGame {
   public static void main(String[] args) {
 
       Dungeon myDungeon = new Dungeon(); // create new Dungeon
-
+      //randomEncounter fight = new randomEncounter();
       /*
       Create more Player's for a four Player team. Example: Knight, Archer, Mage, Rogue
        */
 
       Player Knight = new Player("Daniel", 125, 30, 3, 0); // Player's stats are kept at the end of each battle.
 
-      Char1 Archer = new Char1("Josh", 80, 16, 0, 0);
+      Char1 Archer = new Char1("Josh", 80, 16, 3, 0);
 
       Char2 Mage = new Char2("Lawrence", 60, 9, 6, 0);
 
@@ -49,7 +49,7 @@ public class adventureGame {
       }
 
       if(nextRoom == null) {
-        System.out.println("\nError. You cannot go north. You are back in the Bathroom."); // if you cannot go north print error
+        System.out.println("\nError. You cannot go north. You are back in the Living Room."); // if you cannot go north print error
         nextRoom = currentRoom;
       } // end if(nextRoom == null) loop
     } // end of option n
@@ -64,7 +64,7 @@ public class adventureGame {
       }
 
       if(nextRoom == null) {
-        System.out.println("\nError. You cannot go east. You are back in the Bathroom.");
+        System.out.println("\nError. You cannot go east. You are back in the Living Room.");
         nextRoom = currentRoom;
       } // end if(nextRoom == null) loop
     } // end of option e
@@ -78,7 +78,7 @@ public class adventureGame {
           randomEncounter();
       }
         if(nextRoom == null) {
-          System.out.println("\nError. You cannot go west. You are back in the Bathroom.");
+          System.out.println("\nError. You cannot go west. You are back in the Living Room.");
           nextRoom = currentRoom;
     } // end if(nextRoom == null) loop
   } // end of option w
@@ -93,7 +93,7 @@ public class adventureGame {
       }
 
       if(nextRoom == null) {
-        System.out.println("\nError. You cannot go south. You are back in the Bathroom.");
+        System.out.println("\nError. You cannot go south. You are back in the Living Room.");
         nextRoom = currentRoom;
     } // end if(nextRoom == null) loop
   } // end of option s
@@ -140,7 +140,7 @@ private static void randomEncounter() {
 
       Monster Goblin = new Monster("Goblin", 80, 13, 3);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana, */ Goblin.health, Goblin.attackPower, Goblin.XP, Goblin.name);
+      combatOptions(Goblin.health, Goblin.attackPower, Goblin.XP, Goblin.name);
 
     } // end encounter 1
 
@@ -149,7 +149,7 @@ private static void randomEncounter() {
 
       Monster Zombie = new Monster("Zombie", 86, 12, 4);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Zombie.health, Zombie.attackPower, Zombie.XP, Zombie.name);
+      combatOptions(Zombie.health, Zombie.attackPower, Zombie.XP, Zombie.name);
 
     } // end encounter 2
 
@@ -158,7 +158,7 @@ private static void randomEncounter() {
 
       Monster Dragon = new Monster("Dragon", 90, 16, 12);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Dragon.health, Dragon.attackPower, Dragon.XP, Dragon.name);
+      combatOptions(Dragon.health, Dragon.attackPower, Dragon.XP, Dragon.name);
 
     } // end encounter 3
 
@@ -167,7 +167,7 @@ private static void randomEncounter() {
 
       Monster Frankenstein = new Monster("Frankenstein", 85, 14, 6);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Frankenstein.health, Frankenstein.attackPower, Frankenstein.XP, Frankenstein.name);
+      combatOptions(Frankenstein.health, Frankenstein.attackPower, Frankenstein.XP, Frankenstein.name);
 
     } // end encounter 4
 
@@ -176,7 +176,7 @@ private static void randomEncounter() {
 
       Monster Vampire = new Monster("Vampire", 40, 12, 4);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana, */Vampire.health, Vampire.attackPower, Vampire.XP, Vampire.name);
+      combatOptions(Vampire.health, Vampire.attackPower, Vampire.XP, Vampire.name);
 
     } // end encounter 5
 
@@ -185,7 +185,7 @@ private static void randomEncounter() {
 
     Monster FeralDog = new Monster("Feral Dog", 25, 10, 2);
 
-    combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ FeralDog.health, FeralDog.attackPower, FeralDog.XP, FeralDog.name);
+    combatOptions(FeralDog.health, FeralDog.attackPower, FeralDog.XP, FeralDog.name);
 
   } // end encounter 6
 
@@ -194,7 +194,7 @@ private static void randomEncounter() {
 
     Monster Wyvern = new Monster("Wyvern", 98, 18, 9);
 
-    combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Wyvern.health, Wyvern.attackPower, Wyvern.XP, Wyvern.name);
+    combatOptions(Wyvern.health, Wyvern.attackPower, Wyvern.XP, Wyvern.name);
 
   } // end encounter 7
 
@@ -203,7 +203,7 @@ private static void randomEncounter() {
 
       Monster Ghoul = new Monster("Ghoul", 36, 13, 5);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Ghoul.health, Ghoul.attackPower, Ghoul.XP, Ghoul.name);
+      combatOptions(Ghoul.health, Ghoul.attackPower, Ghoul.XP, Ghoul.name);
 
     } // end encounter 8
 
@@ -212,7 +212,7 @@ private static void randomEncounter() {
 
       Monster Leviathan = new Monster("Leviathan", 126, 27, 15);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Leviathan.health, Leviathan.attackPower, Leviathan.XP, Leviathan.name);
+      combatOptions(Leviathan.health, Leviathan.attackPower, Leviathan.XP, Leviathan.name);
 
     } // end encounter 9
 
@@ -221,7 +221,7 @@ private static void randomEncounter() {
 
       Monster Golgothan = new Monster("Golgothan", 59, 11, 6);
 
-      combatOptions(/*Hero.health, Hero.attackPower, Hero.mana,*/ Golgothan.health, Golgothan.attackPower, Golgothan.XP, Golgothan.name);
+      combatOptions(Golgothan.health, Golgothan.attackPower, Golgothan.XP, Golgothan.name);
 
     } // end encounter 10
 
@@ -334,14 +334,15 @@ private static void randomEncounter() {
         if (Player.mana >= 2) {
 
           System.out.println("Who would you like to heal?");
-          System.out.println("Type Self to heal yourself");
-          System.out.println("Type Archer to heal the Archer");
-          System.out.println("Type Mage to heal the Mage");
+          System.out.println("Type s to heal yourself");
+          System.out.println("Type a to heal the Archer");
+          System.out.println("Type m to heal the Mage");
+          System.out.println("Type r to heal the Rogue");
 
           Scanner choice = new Scanner(System.in);
           Choice = choice.nextLine();
 
-          if (Choice.equalsIgnoreCase("Self")) {
+          if (Choice.equalsIgnoreCase("s")) {
             Player.health = Player.health - Monster.attackPower;
 
             System.out.println("\nYou heal yourself for 36 HP.");
@@ -352,24 +353,38 @@ private static void randomEncounter() {
             FirstTurn = false;
           } // end self heal
 
-          if (Choice.equalsIgnoreCase("Archer")) {
+          if (Choice.equalsIgnoreCase("a")) {
             Player.health = Player.health - Monster.attackPower;
 
             System.out.println("\nYou heal the Archer for 36 HP.");
             Char1.health = Char1.health + 36;
             Player.mana = Player.mana - 2;
+
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+            FirstTurn = false;
           } // end Archer heal
 
-            if (Choice.equalsIgnoreCase("Mage")) {
-              Player.health = Player.health - Monster.attackPower;
+            if (Choice.equalsIgnoreCase("m")) {
+          Player.health = Player.health - Monster.attackPower;
 
-              System.out.println("\nYou heal the Mage for 36 HP.");
-              Char2.health = Char2.health + 36;
-              Player.mana = Player.mana - 2;
+          System.out.println("\nYou heal the Mage for 36 HP.");
+          Char2.health = Char2.health + 36;
+          Player.mana = Player.mana - 2;
 
-              System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
-              FirstTurn = false;
-            } // end Mage heal
+          System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+          FirstTurn = false;
+        } // end Mage heal
+
+          if (Choice.equalsIgnoreCase("r")) {
+            Player.health = Player.health - Monster.attackPower;
+
+            System.out.println("\nYou heal the Rogue for 36 HP.");
+            Char3.health = Char3.health + 36;
+            Player.mana = Player.mana - 2;
+
+            System.out.print("The " + Monster.name + " hits you for " + Monster.attackPower + "\n");
+            FirstTurn = false;
+          } // end Rogue heal
 
         } // End of if statement.
       } // End of else if option 3 statement.
