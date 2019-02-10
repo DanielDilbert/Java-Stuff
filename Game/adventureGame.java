@@ -133,7 +133,7 @@ private static void randomEncounter() {
   for(int counter = 1; counter <= 1; counter ++) {
 
     // The encounter will start from 0 and change between 0-10
-    int encounter = 0 + randomChance.nextInt(10);
+    int encounter = randomChance.nextInt(10);
 
     // If the encounter == 1, you will encounter a Goblin
     if(encounter == 1) {
@@ -468,7 +468,7 @@ private static void randomEncounter() {
 
       /* **********************************************BEGIN SECOND TURN***************************************************************** */
       // After the Player's turn, the archer will take its turn
-
+      // test
       if (!FirstTurn) {
 
         /*Report Combat Stats*/
